@@ -4,25 +4,46 @@ let items = [];
 
 
 items = items.concat(JSON.parse(initial_items));
-function submitCard() {
-// let price =	document.getElementById("card-form").price.value;
-	// console.log(price);
+initializeCards();
 
+function initializeCards(){
 	let card_group = document.getElementsByClassName("card-container").item(0);
-	card_group.innerHTML = "";
 	for (let i = 0; i < items.length; i++) {
 		let new_item = document.createElement("li");
-		let new_content = document.createTextNode(items[i].name);
-		new_item.appendChild(new_content);
+		new_item.appendChild(document.createTextNode(items[i].name));
 		card_group.appendChild(new_item);
 	}
+}
 
-	// console.log(JSON.parse(initial_items));
 
+function submitCard() {
+	let card_group = document.getElementsByClassName("card-container").item(0);
+	card_group.innerHTML = "";
+	setupItem();
+	initializeCards();
 }
 
 
 function deleteCards() {
 	document.getElementsByClassName("card-container").item(0).innerHTML = "";
+	items = [];
+}
 
+function setupItem() {
+
+	let form = document.getElementById("card-form");
+	let name = form.name.value;
+	let price = form.price.value;
+	let description = form.desc.value;
+	let url = form.url.value;
+	items.push({
+		"name": name,
+			"price": price,
+			"description": description,
+			"url": url,
+	});
+}
+function setupCard(item) {
+	let card = document.createElement("li");
+	return card;
 }
