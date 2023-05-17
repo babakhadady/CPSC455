@@ -1,10 +1,31 @@
+body {
+	margin: 0px;
+
+
+} 
+
+.navbar {
+	background-color: #333;
+	padding: 0px;
+	margin: 0px;
+	height: 5vh;
+	display: flex;
+	align-items: center;
+}
+
 .nav-element  {
 	display: inline;
-	padding: 8px;
 	background-color: #333;
 	color: white;
-	padding: 20 px 20 px;
+	position: relative;
+	padding: 10px;
 }
+
+.nav-element:hover {
+	opacity: 50%;
+	cursor: pointer;
+}
+
 
 .main-container {
 	display:flex;
