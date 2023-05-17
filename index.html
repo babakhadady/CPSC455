@@ -7,54 +7,57 @@
 		<meta name="description" content="Description">
 		<meta name="author" content="Zachary Tyhacz">
 		<link rel="stylesheet" href="styles.css">
+	</head>
 	<body>
 		<nav>
 			<ul class="navbar">
 				<li class="home nav-element">
-					Home
+					<a onclick="changePage(true);">	Home </a>
 				</li>
 				<li class="about nav-element">
-					About
+					<a onclick="changePage(false);"> About </a>
 				</li>
 
 			</ul>
 		</nav>
 
-
-		<h1> Assignment 1</h1>
-
-		<div class="main-container">
-			<form id="card-form" onsubmit="submitCard(); return false;">
-				<span class="form-group">
-					<label for="name">Item Name:</label>
-					<input type="text" id="name" name="name">
-				</span>
-				<span class="form-group">
-					<label for="description">Description:</label>
-					<input type="text" id="description" name="desc">
-				</span>
-				<span class="form-group">
-					<label for="price">Price:</label>
-					<input type="text" id="price" name="price">
-				</span>
-				<span class="form-group">
-					<label for="url">Image Url:</label>
-					<input type="text" id="url" name="url">
-				</span>
-				<span class="form-group">
-					<input type="submit" value="Add">
-					<input type="reset" value="Clear">
-				</span>
-			</form>
-			</form>
-			
-			<ul class="card-group">
-			</ul>
-			<button onclick="deleteCards()" class="delete-button"> Delete Cards </button>
+		<div id="home">
+			<h1> Assignment 1</h1>
+			<div class="main-container">
+				<form id="card-form" onsubmit="submitCard(); return false;">
+					<span class="form-group">
+						<label for="name">Item Name:</label>
+						<input type="text" id="name" name="name">
+					</span>
+					<span class="form-group">
+						<label for="description">Description:</label>
+						<input type="text" id="description" name="desc">
+					</span>
+					<span class="form-group">
+						<label for="price">Price:</label>
+						<input type="text" id="price" name="price">
+					</span>
+					<span class="form-group">
+						<label for="url">Image Url:</label>
+						<input type="text" id="url" name="url">
+					</span>
+					<span class="form-group">
+						<input type="submit" value="Add">
+						<input type="reset" value="Clear">
+					</span>
+				</form>
+				</form>
+				<button class="delete-button" onclick="deleteCards()" class="delete-button"> Delete All Cards </button>
+				<ul class="card-group">
+				</ul>
+			</div>
 		</div>
+			<div id="about">
+				<h1> About </h1>
+				test
+			</div>
 
 
-		<script src="scripts.js"></script>
-	</head>
+			<script src="scripts.js"></script>
 	</body>
 </html>
