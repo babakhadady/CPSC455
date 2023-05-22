@@ -1,3 +1,3 @@
 # CPSC455
 
-Repository for CPSC455
+Assignment1 for CPSC455 2023S
