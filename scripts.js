@@ -4,7 +4,6 @@ let items = [];
 
 let home = true;
 
-
 items = items.concat(JSON.parse(initial_items));
 initializeCards();
 
@@ -71,7 +70,6 @@ async function addItem() {
 			"count": 1,
 			"price": price,
 			"url": url,
-
 		});
 	})
 }
@@ -134,6 +132,5 @@ async function deleteCard(item) {
 function areIdentical(item, name, price, description, url) {
 	console.log("ran");
 	return ((item.name == name) && (item.price === price) && (item.description === description) && (item.url === url));
-
 }
 
