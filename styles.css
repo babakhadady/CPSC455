@@ -194,6 +194,15 @@ input[type="text"]:focus {
 		display: none;
 	}
 
+	.nav-element {
+		padding: 1vw;
+	}
+
+	.navbar {
+		padding: 2vw;
+		height: 3vh;
+	}
+
 	.card-container {
 		height: 25%;
 		width: 55%;
