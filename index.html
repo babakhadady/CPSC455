@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="styles.css">
 	</head>
 	<body>
+		<header>
 		<nav>
 			<ul class="navbar">
 				<li onclick="changePage(true);" class="home nav-element">
@@ -20,7 +21,7 @@
 
 			</ul>
 		</nav>
-
+		</header>
 		<div id="home">
 			<h1> Assignment 1</h1>
 			<div class="main-container">
@@ -41,7 +42,8 @@
 						<label for="url">Image Url:</label>
 						<input type="text" id="url" name="url">
 					</span>
-					<span class="form-group">
+					<label> Click on a card to remove it </label>
+					<span class="button-group">
 						<input type="submit" value="Add">
 						<input type="reset" value="Clear">
 					</span>
@@ -54,8 +56,17 @@
 		</div>
 			<div id="about">
 				<h1> About </h1>
-				test
+
+				<div class="about-container">
+					<p class="about-text">
+						My name is Babak. I'm a third year CS student at UBC.
+					</p>
+					<p class="about-text">
+						This is my application for Assignment 1 of CPSC 445. It allows a user to add simple cards containing a name, price, cost, description, and to also do fun stuff with the cards.
+					</p>
+				</div>
 			</div>
+
 
 
 			<script src="scripts.js"></script>

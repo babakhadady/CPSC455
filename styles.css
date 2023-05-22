@@ -1,7 +1,5 @@
 body {
 	margin: 0px;
-
-
 } 
 
 .navbar {
@@ -11,19 +9,25 @@ body {
 	height: 5vh;
 	display: flex;
 	align-items: center;
+	padding-left: .5vw;
 }
 
 .nav-element  {
 	display: inline;
-	background-color: #333;
 	color: white;
 	position: relative;
 	padding: 10px;
+	transition: all .2s ease-in-out;
 }
 
 .nav-element:hover {
 	opacity: 50%;
 	cursor: pointer;
+	transform: scale(1.05);
+}
+
+a {
+	font-size: 2vh; 
 }
 
 
@@ -52,10 +56,19 @@ form {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	background-color: gray;
+	background-color: #333;
 	margin: 20px 20px;
 	padding: 20px 20px;
 	border-radius: 10px;
+	transition: all .2s ease-in-out;
+}
+
+.card-container:hover {
+	transition: 0.2s;
+	cursor: pointer;
+	transform: scale(1.05);
+	filter: brightness(0.75);
+
 }
 
 
@@ -65,10 +78,16 @@ form {
 	align-items: center;
 	justify-content: center;
 	padding: 0px;
+	width: 100%;
 }
+
 
 h1 {
 	text-align: center;
+	font-size: 2.5rem;
+	font-weight: bold;
+	color: #1c1c1c;
+	margin-bottom: 1rem;
 }
 
 * {
@@ -76,9 +95,9 @@ h1 {
 }
 
 .card-name {
-	margin-top: 0px;
+	margin: 0px;
+	color: white;
 	font-size: 40px;
-	padding-bottom: 5px;
 }
 
 .card-img {
@@ -90,11 +109,77 @@ h1 {
 	border-radius: 5px;
 }
 
-p[class^="card-"] {
+.card-description, .card-price {
 
 	margin: 0px 0px;
 	margin-top: 0px;
 	margin-bottom: 0px;
 	color: white;
 	padding-bottom: 4px;	
+}
+
+.about-text {
+	font-size: 1.2rem;
+	color: #394f56;
+	line-height: 1.5;
+
+}
+
+
+
+#about {
+	display:flex;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	padding: 0px 5vw;
+}
+
+#card-form {
+	width: 50%;
+}
+.form-group {
+	width: 100%;
+}
+
+.button-group {
+	padding-bottom: 1vh;
+}
+
+label {
+	display: block;
+	margin-bottom: 0.5rem;
+	font-weight: bold;
+}
+
+input[type="text"] {
+	width: 100%;
+	padding: 0.5rem;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: 1rem;
+	margin-bottom: 1rem;
+}
+
+input[type="submit"], input[type="reset"],  button {
+	padding: 0.5rem 1rem;
+	background-color: #333;
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	font-size: 1rem;
+	cursor: pointer;
+	transition: all .2s ease-in-out;
+}
+
+input[type="submit"]:hover, input[type="reset"]:hover, button:hover {
+	background-color: #1c1c1c;
+	transform: scale(1.05);
+}
+
+	
+
+input[type="text"]:focus {
+	outline: none;
+	box-shadow: 0 0 5px rgba(51, 122, 183, 0.5);
 }
