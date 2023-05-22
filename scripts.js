@@ -1,11 +1,8 @@
 changePage(true);
-let initial_items = '[{"name": "Bike", "description": "a nice bike", "price": "100", "url": "https://cdn.shopify.com/s/files/1/0541/0154/1047/products/0711964_b_1200x1200.jpg?v=1614971567"}, {"name": "Candy", "description": "a delicious treat", "price": "3", "url": "https://assets.shop.loblaws.ca/products/21210265/b1/en/front/21210265_front_a01_@2.png"}, {"name": "Dog", "description": "a good boy", "price": "10", "url": "https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcRPMKnq00NF_T7RusUNeLrSazRZM0S5O8_AOcw2iBTmYTxd3Q7uXf0sW41odpAKqSblKDMUMHGb8nZRo9g"}]';
+let initial_items = '[{"name": "Bike", "description": "a nice bike", "count": "1", "price": "100", "url": "https://cdn.shopify.com/s/files/1/0541/0154/1047/products/0711964_b_1200x1200.jpg?v=1614971567"}, {"name": "Candy", "description": "a delicious treat", "count": "1", "price": "3", "url": "https://assets.shop.loblaws.ca/products/21210265/b1/en/front/21210265_front_a01_@2.png"}, {"name": "Dog", "description": "a good boy", "count": "1", "price": "10", "url": "https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcRPMKnq00NF_T7RusUNeLrSazRZM0S5O8_AOcw2iBTmYTxd3Q7uXf0sW41odpAKqSblKDMUMHGb8nZRo9g"}]';
 let items = [];
 
-let home;
-
-
-
+let home = true;
 
 
 items = items.concat(JSON.parse(initial_items));
@@ -33,8 +30,7 @@ async function initializeCards(){
 
 
 async function submitCard() {
-	let card_group = document.getElementsByClassName("card-group").item(0);
-	card_group.innerHTML = "";
+	deleteChildren();
 	addItem().then(() => {
 		initializeCards();
 	});
@@ -42,7 +38,7 @@ async function submitCard() {
 
 function deleteChildren() {
 	element = document.getElementsByClassName("card-group").item(0);
-	
+
 	while(element.firstChild) {
 		element.removeChild(element.firstChild);
 	}
@@ -61,13 +57,22 @@ async function addItem() {
 	let url = form.url.value;
 	if (!name || !price || !description || !url) return;
 
+	for (let item of items) {
+		if (areIdentical(item, name, price, description, url)) {
+			item.count = (parseInt(item.count) + 1).toString();
+			return;
+		}
+	}
+
 	await checkURL(url).then((res) => {
 		if(!res) return;
 		items.push({
 			"name": name,
-			"price": price,
 			"description": description,
+			"count": 1,
+			"price": price,
 			"url": url,
+
 		});
 	})
 }
@@ -87,18 +92,23 @@ function setupCard(item, i) {
 			element.classList.add("card-" + prop);
 			if (prop === "price") {
 				element.appendChild(document.createTextNode("$" + item[prop]));
-			} else {
+			} else if (prop === "count") {
+				element.appendChild(document.createTextNode("count: " + item[prop]));
+			}
+
+
+			else  {
 				element.appendChild(document.createTextNode(item[prop]));
 			}
 		}
 		card.appendChild(element);
 	}
-		card.id = i;
-		card.onclick = () => {
-			deleteCard(card);
-		}
-	
-		return card;
+	card.id = i;
+	card.onclick = () => {
+		deleteCard(item);
+	}
+
+	return card;
 }
 
 
@@ -111,8 +121,21 @@ async function checkURL(url) {
 }
 
 async function deleteCard(item) {
-	console.log(item.id);
-	items.splice(item.id, 1);
+
+	console.log(item.count);
+	if (parseInt(item.count) > 1) {
+		item.count = (parseInt(item.count) - 1).toString();
+	} else {
+		items.splice(item.id, 1);
+	}
 	deleteChildren();
 	initializeCards();	
 }
+
+
+function areIdentical(item, name, price, description, url) {
+	console.log("ran");
+	return ((item.name == name) && (item.price === price) && (item.description === description) && (item.url === url));
+
+}
+
