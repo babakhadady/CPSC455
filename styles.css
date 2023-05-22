@@ -1,5 +1,5 @@
 body {
- 	margin: 0px;
+	margin: 0px;
 } 
 
 .navbar {
@@ -16,7 +16,7 @@ body {
 	display: inline;
 	color: white;
 	position: relative;
-	padding: 10px;
+	padding: .5vh .5vw;
 	transition: all .2s ease-in-out;
 }
 
@@ -183,3 +183,28 @@ input[type="text"]:focus {
 	box-shadow: 0 0 5px rgba(51, 122, 183, 0.5);
 }
 
+@media only screen and (max-width: 600px) {
+
+	#about {
+		display:flex;
+		text-align: center;
+		align-items: center;
+		justify-content: center;
+		padding: 0px 15%;
+		display: none;
+	}
+
+	.card-container {
+		height: 25%;
+		width: 55%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		background-color: #333;
+		margin: 20px 20px;
+		padding: 20px 20px;
+		border-radius: 10px;
+		transition: all .2s ease-in-out;
+	}
+}

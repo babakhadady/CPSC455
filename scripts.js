@@ -38,7 +38,6 @@ async function submitCard() {
 
 function deleteChildren() {
 	element = document.getElementsByClassName("card-group").item(0);
-
 	while(element.firstChild) {
 		element.removeChild(element.firstChild);
 	}
@@ -121,12 +120,11 @@ async function checkURL(url) {
 }
 
 async function deleteCard(item) {
-
-	console.log(item.count);
 	if (parseInt(item.count) > 1) {
 		item.count = (parseInt(item.count) - 1).toString();
 	} else {
-		items.splice(item.id, 1);
+		index = items.indexOf(item);
+		items.splice(index, 1);
 	}
 	deleteChildren();
 	initializeCards();	
