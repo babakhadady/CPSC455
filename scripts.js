@@ -130,7 +130,6 @@ async function deleteCard(item) {
 
 
 function areIdentical(item, name, price, description, url) {
-	console.log("ran");
 	return ((item.name == name) && (item.price === price) && (item.description === description) && (item.url === url));
 }
 
