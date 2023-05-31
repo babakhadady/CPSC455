@@ -1,5 +1,4 @@
 changePage(true);
-let initial_items = '[{"name": "Bike", "description": "a nice bike", "count": "1", "price": "100", "url": "https://cdn.shopify.com/s/files/1/0541/0154/1047/products/0711964_b_1200x1200.jpg?v=1614971567"}, {"name": "Candy", "description": "a delicious treat", "count": "1", "price": "3", "url": "https://assets.shop.loblaws.ca/products/21210265/b1/en/front/21210265_front_a01_@2.png"}, {"name": "Dog", "description": "a good boy", "count": "1", "price": "10", "url": "https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcRPMKnq00NF_T7RusUNeLrSazRZM0S5O8_AOcw2iBTmYTxd3Q7uXf0sW41odpAKqSblKDMUMHGb8nZRo9g"}]';
 let items = [];
 
 let home = true;
@@ -20,7 +19,6 @@ function changePage(home) {
 
 async function initializeCards(){
 	let card_group = document.getElementsByClassName("card-group").item(0);
-	card_group
 	for (let i = 0; i < items.length; i++) {
 		let new_item = setupCard(items[i], i);
 		card_group.appendChild(new_item);
@@ -109,13 +107,7 @@ function setupCard(item, i) {
 }
 
 
-async function checkURL(url) {
-	return fetch(url).then((res)=> {
-		return res.ok;
-	}).catch((e) => {
-		return false;
-	});
-}
+
 
 async function deleteCard(item) {
 	if (parseInt(item.count) > 1) {
