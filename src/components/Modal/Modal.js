@@ -1,6 +1,6 @@
 import "./Modal.css";
 
-import { removeItem, addItem} from "../../redux/itemsReducer";
+import { removeItem} from "../../redux/itemsReducer";
 import { useDispatch } from "react-redux";
 
 function Modal({ item, setModal }) {
