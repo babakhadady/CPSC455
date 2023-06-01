@@ -3,7 +3,6 @@ import { useState } from "react";
 import Modal from "../Modal/Modal";
 import "./Card.css";
 
-let currModal = null;
 
 function Card({ item, setModal }) {
   return (
@@ -14,22 +13,19 @@ function Card({ item, setModal }) {
       }}
     >
       <li className="card-name"> {item.name}</li>
-      <img className="card-img" src={item.url} />
+      <img className="card-img" alt={item.name}src={item.url} />
     </ul>
   );
 }
 
-function openModal(item) {
-  currModal = <Modal item={item} />;
-}
 
 function CardList() {
   const [modal, setModal] = useState(null);
 
   const items = useSelector((state) => state.items);
 
-  const cards = items.map((i) => {
-    return <Card item={i} setModal={setModal} />;
+  const cards = items.map((e, i) => {
+    return <Card item={e} key={i} setModal={setModal} />;
   });
 
   return (
