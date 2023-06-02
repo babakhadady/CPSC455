@@ -18,6 +18,7 @@ function Form() {
 			name: itemName,
 			description: about,
 			price: price,
+			count: 1,
 			url: url,
 		};
 		dispatch(addItem(item));
@@ -74,7 +75,7 @@ function Form() {
 							onChange={(e) => setURL(e.target.value)}
 						/>
 					</span>
-					<label> Click on a card to remove one item </label>
+					<label> Click on a card for more information</label>
 					<span className="button-group">
 						<input onClick={submitForm} type="submit" value="Add" />
 						<input type="reset" onClick={resetForm} value="Clear" />
