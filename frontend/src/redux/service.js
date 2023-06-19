@@ -28,8 +28,6 @@ const getCard = async (name) => {
   return data;
 };
 
-
-
 const deleteCard = async (name) => {
   const response = await fetch("http://localhost:3001/cards/" + name, {
     method: "DELETE",
@@ -38,4 +36,4 @@ const deleteCard = async (name) => {
   return data;
 };
 
-
+export default { addCard, getCards, getCard, deleteCard };

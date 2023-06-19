@@ -1,7 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
+import {
+  deleteCardAsync,
+  getCardsAsync,
+  getCardAsync,
+  addCardAsync,
+} from "./thunks";
 
-
-const INITIAL_STATE = [];
+const INITIAL_STATE = {
+  items: [],
+  currentItem: {},
+};
 
 const itemsSlice = createSlice({
   name: "items",
@@ -14,31 +22,33 @@ const itemsSlice = createSlice({
     clearItems: (state, action) => {
       return [];
     },
-    removeItem: (state, action) => {
-      const index = getIndex(state, action.payload);
-      const new_state = [...state];
-      new_state.splice(index, 1);
-      return new_state;
-    },
-    increaseCount: (state, action) => {
-      const item = { ...state[getIndex(state, action.payload)] };
-      item.count++;
-      const index = getIndex(state, item);
-      const new_state = [...state];
-      new_state.splice(index, 1);
-      new_state.splice(index, 0, item);
-      return new_state;
-    },
-    decreaseCount: (state, action) => {
-      const item = { ...state[getIndex(state, action.payload)] };
-      if (item.count === 1) return;
-      item.count--;
-      const index = getIndex(state, item);
-      const new_state = [...state];
-      new_state.splice(index, 1);
-      new_state.splice(index, 0, item);
-      return new_state;
-    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getCardsAsync.fulfilled, (state, action) => {
+        return {
+          items: action.payload,
+          currentItem: state.currentItem,
+        };
+      })
+      .addCase(getCardAsync.fulfilled, (state, action) => {
+        return {
+          items: state.items,
+          currentItem: action.payload,
+        };
+      })
+      .addCase(deleteCardAsync.fulfilled, (state, action) => {
+        return {
+          items: action.payload,
+          currentItem: state.currentItem,
+        };
+      })
+      .addCase(addCardAsync.fulfilled, (state, action) => {
+        return {
+          items: action.payload,
+          currentItem: state.currentItem,
+        };
+      });
   },
 });
 
