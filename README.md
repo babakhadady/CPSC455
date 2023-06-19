@@ -1,3 +1,3 @@
 # CPSC455
 
-Assignment2 for CPSC455 2023S
+Assignment3 for CPSC455 2023S
