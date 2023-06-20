@@ -10,9 +10,6 @@ function Form() {
   const [url, setURL] = useState("");
 
   const dispatch = useDispatch();
-  function deleteCards() {
-    dispatch(clearItems());
-  }
 
   function submitForm() {
     const item = {
@@ -82,9 +79,6 @@ function Form() {
             <input type="reset" onClick={resetForm} value="Clear" />
           </span>
         </div>
-        <button className="delete-button" onClick={deleteCards}>
-          Delete All Cards
-        </button>
       </div>
     </>
   );
