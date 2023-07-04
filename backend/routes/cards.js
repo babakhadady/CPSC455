@@ -1,5 +1,8 @@
 var express = require("express");
 var router = express.Router();
+
+const Card = require("../model");
+
 const { v4: uuid } = require("uuid");
 
 let cards = [
@@ -26,82 +29,48 @@ let cards = [
   },
 ];
 
-let cardsUUID = [
-  {
-    name: "Bike",
-    uuid: uuid(),
-  },
-  {
-    name: "Candy",
-    uuid: uuid(),
-  },
-  {
-    name: "Dog",
-    uuid: uuid(),
-  },
-];
-
 /* GET cards. */
-router.get("/", function (req, res) {
+router.get("/", async function (req, res) {
+  const cards = await Card.find({});
+  console.log(cards);
   res.status(200);
   res.send(cards);
 });
 
 /* GET card */
-router.get("/:card", function (req, res) {
-  let card = cardsUUID.find((card) => {
-    return card.name === req.params.card;
-  });
-
+router.get("/:card", async function (req, res) {
+  const card = await Card.findOne({ name: req.params.card });
   res.status(200);
   return res.send(card);
 });
 
 /* POST a card */
-router.post("/", function (req, res) {
-  let card = req.body;
-  cards.push(card);
-  cardsUUID.push({ name: card.name, uuid: uuid() });
+router.post("/", async function (req, res) {
+  let card = new Card(req.body);
+  await card.save();
   res.status(201);
   return res.send(card);
 });
 
 /* DELETE a card */
-router.delete("/:card", function (req, res) {
-  let name = req.params.card;
-
-  cards = cards.filter((card) => {
-    return card.name !== name;
-  });
-
-  cardsUUID = cardsUUID.filter((card) => {
-    return card.name !== name;
-  });
-
+router.delete("/:card", async function (req, res) {
+  await Card.deleteOne({ name: req.params.card });
   res.status(204);
   res.send();
 });
 
 /* PATCH increment a card*/
-router.patch("/add/:card", function (req, res) {
-  let name = req.params.card;
-  let card = cards.find((card) => {
-    return card.name === name;
-  });
-
-  card.count++;
+router.patch("/add/:card", async function (req, res) {
+  await Card.updateOne({ name: req.params.card }, { $inc: { count: 1 } });
+  const card = await Card.findOne({ name: req.params.card });
   res.status(200);
   res.send(card);
 });
 
 /* PATCH decrement a card*/
-router.patch("/remove/:card", function (req, res) {
-  let name = req.params.card;
-  let card = cards.find((card) => {
-    return card.name === name;
-  });
-
-  card.count--;
+router.patch("/remove/:card", async function (req, res) {
+  await Card.updateOne({ name: req.params.card }, { $inc: { count: -1 } });
+  const card = await Card.findOne({ name: req.params.card });
   res.status(200);
   res.send(card);
 });

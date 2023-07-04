@@ -1,6 +1,7 @@
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
+var mongoose = require("mongoose");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var cors = require("cors");
@@ -8,6 +9,10 @@ var cors = require("cors");
 var cardsRouter = require("./routes/cards");
 
 var app = express();
+
+var DB_URI = "mongodb://localhost:27017/cards";
+
+connect();
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -36,5 +41,9 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
+
+async function connect() {
+  await mongoose.connect(DB_URI);
+}
 
 module.exports = app;
