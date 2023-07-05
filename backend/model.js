@@ -6,6 +6,7 @@ const cardSchema = new mongoose.Schema({
   price: Number,
   count: Number,
   url: String,
+  SKU: String,
 });
 
 const Card = mongoose.model("Card", cardSchema);

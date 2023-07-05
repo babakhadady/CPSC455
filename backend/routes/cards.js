@@ -3,8 +3,6 @@ var router = express.Router();
 
 const Card = require("../model");
 
-const { v4: uuid } = require("uuid");
-
 let cards = [
   {
     name: "Bike",
@@ -32,7 +30,6 @@ let cards = [
 /* GET cards. */
 router.get("/", async function (req, res) {
   const cards = await Card.find({});
-  console.log(cards);
   res.status(200);
   res.send(cards);
 });
@@ -47,6 +44,7 @@ router.get("/:card", async function (req, res) {
 /* POST a card */
 router.post("/", async function (req, res) {
   let card = new Card(req.body);
+  card["SKU"] = makeSKU();
   await card.save();
   res.status(201);
   return res.send(card);
@@ -74,5 +72,16 @@ router.patch("/remove/:card", async function (req, res) {
   res.status(200);
   res.send(card);
 });
+
+function makeSKU() {
+  let SKU = "";
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  for (let i = 0; i < 8; i++) {
+    SKU += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return SKU;
+}
 
 module.exports = router;

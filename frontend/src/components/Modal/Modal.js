@@ -20,10 +20,6 @@ function Modal({ item, setModal }) {
 		dispatch(getCardAsync(item.name));
 	}, []);
 
-	useEffect(() => {
-		setUUID(items.currentItem.uuid);
-	}, [items]);
-
 	function deleteItem() {
 		dispatch(deleteCardAsync(item.name));
 		setModal(null);
@@ -39,7 +35,7 @@ function Modal({ item, setModal }) {
 				<div>{item.description}</div>
 				<div>{`Count: ` + curr_item.count}</div>
 				<div>{`$` + item.price}</div>
-				<div> {"uuid: " + uuid} </div>
+				<div> {"SKU: " + item.SKU} </div>
 				<img className="modal-image" alt={item.name} src={item.url} />
 				<div>
 					<button
