@@ -60,3 +60,7 @@ ul {
 #card-form {
   width: 50%;
 }
+
+.home {
+  justify-content: center;
+}
