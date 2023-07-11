@@ -61,7 +61,6 @@ router.get("/count/all", async function (req, res) {
     },
   ]);
 
-  console.log(count);
   res.status(200);
   res.send(count);
 });
