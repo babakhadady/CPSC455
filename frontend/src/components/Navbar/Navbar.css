@@ -1,0 +1,26 @@
+
+.navbar {
+	background-color: #333;
+	padding: 0px;
+	margin: 0px;
+	height: 5vh;
+	display: flex;
+	align-items: center;
+	padding-left: .5vw;
+}
+
+.nav-element  {
+	display: inline;
+	color: white;
+	position: relative;
+	padding: .5vh .5vw;
+	transition: all .2s ease-in-out;
+	font-size: 2vh; 
+
+}
+
+.nav-element:hover {
+	opacity: 50%;
+	cursor: pointer;
+	transform: scale(1.05);
+}
