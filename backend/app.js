@@ -52,6 +52,7 @@ async function connect() {
     console.log("Successful Connection");
   } catch (e) {
     console.log("Connection Failed");
+    console.log(e);
   }
 }
 
