@@ -47,6 +47,7 @@ async function connect() {
       console.log(`listening on ${PORT}`);
     });
 
+    console.log(process.env.MONGODB_URI);
     client = await mongoose.connect(process.env.MONGODB_URI);
     console.log("Successful Connection");
   } catch (e) {
