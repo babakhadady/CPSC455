@@ -5,12 +5,11 @@ var mongoose = require("mongoose");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var cors = require("cors");
-
 var cardsRouter = require("./routes/cards");
-
 var app = express();
 
-var DB_URI = "mongodb://localhost:27017/cards";
+const PORT = process.env.PORT || 3001;
+require("dotenv").config();
 
 connect();
 
@@ -43,7 +42,11 @@ app.use(function (err, req, res, next) {
 });
 
 async function connect() {
-  await mongoose.connect(DB_URI);
+  client = await mongoose.connect(process.env.MONGODB_URI);
+  app.listen(PORT, () => {
+    console.log(`listening on ${PORT}`);
+  });
+  console.log("Successful Connection");
 }
 
 module.exports = app;

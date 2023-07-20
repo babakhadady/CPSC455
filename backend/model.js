@@ -9,6 +9,6 @@ const cardSchema = new mongoose.Schema({
   SKU: String,
 });
 
-const Card = mongoose.model("Card", cardSchema);
+const Card = mongoose.model("Card", cardSchema, "Cards");
 
 module.exports = Card;
