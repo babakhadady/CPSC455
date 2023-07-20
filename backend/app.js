@@ -42,11 +42,16 @@ app.use(function (err, req, res, next) {
 });
 
 async function connect() {
-  client = await mongoose.connect(process.env.MONGODB_URI);
-  app.listen(PORT, () => {
-    console.log(`listening on ${PORT}`);
-  });
-  console.log("Successful Connection");
+  try {
+    app.listen(PORT, () => {
+      console.log(`listening on ${PORT}`);
+    });
+
+    client = await mongoose.connect(process.env.MONGODB_URI);
+    console.log("Successful Connection");
+  } catch (e) {
+    console.log("Connection Failed");
+  }
 }
 
 module.exports = app;
