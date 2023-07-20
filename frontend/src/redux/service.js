@@ -1,3 +1,6 @@
+
+const BACKEND_URI = "https://cpsc455-backend.onrender.com"
+
 const addCard = async (card) => {
 	const response = await fetch("http://localhost:3001/cards", {
 		method: "POST",
@@ -12,7 +15,7 @@ const addCard = async (card) => {
 };
 
 const getCards = async () => {
-	const response = await fetch("http://localhost:3001/cards/", {
+	const response = await fetch(BACKEND_URI, {
 		method: "GET",
 	});
 	const data = await response.json();
@@ -20,7 +23,7 @@ const getCards = async () => {
 };
 
 const getCard = async (name) => {
-	const response = await fetch("http://localhost:3001/cards/" + name, {
+	const response = await fetch(BACKEND_URI + name, {
 		method: "GET",
 	});
 	const data = await response.json();
@@ -28,7 +31,7 @@ const getCard = async (name) => {
 };
 
 const deleteCard = async (name) => {
-	const response = await fetch("http://localhost:3001/cards/" + name, {
+	const response = await fetch(BACKEND_URI + name, {
 		method: "DELETE",
 	}).then(() => {
 		return getCards();
