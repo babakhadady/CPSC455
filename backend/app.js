@@ -48,7 +48,7 @@ async function connect() {
     });
 
     console.log(process.env.MONGODB_URI);
-    client = await mongoose.connect(process.env.MONGODB_URI);
+    client = await mongoose.connect(`${process.env.MONGODB_URI}`);
     console.log("Successful Connection");
   } catch (e) {
     console.log("Connection Failed");
