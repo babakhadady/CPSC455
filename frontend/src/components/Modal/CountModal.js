@@ -4,7 +4,7 @@ function CountModal({ hideModal }) {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    fetch("https://cpsc455-backend.onrender.com//cards/count/all")
+    fetch("https://cpsc455-backend.onrender.com/cards/count/all")
       .then((res) => {
         return res.json();
       })
