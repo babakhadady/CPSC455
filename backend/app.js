@@ -1,17 +1,13 @@
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
-var mongoose = require("mongoose");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var cors = require("cors");
 var cardsRouter = require("./routes/cards");
 var app = express();
 
-const PORT = process.env.PORT || 3001;
-require("dotenv").config();
 
-connect();
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -41,19 +37,5 @@ app.use(function (err, req, res, next) {
   res.render("error");
 });
 
-async function connect() {
-  try {
-    app.listen(PORT, () => {
-      console.log(`listening on ${PORT}`);
-    });
-
-    console.log(process.env.MONGODB_URI);
-    client = await mongoose.connect(`${process.env.MONGODB_URI}`);
-    console.log("Successful Connection");
-  } catch (e) {
-    console.log("Connection Failed");
-    console.log(e);
-  }
-}
 
 module.exports = app;

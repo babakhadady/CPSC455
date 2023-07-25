@@ -65,6 +65,12 @@ router.get("/count/all", async function (req, res) {
   res.send(count);
 });
 
+router.delete("/cards/all", async function (req, res) {
+  let wait = await Card.deleteMany({});
+  res.status(204);
+  res.send();
+});
+
 function makeSKU() {
   let SKU = "";
   const characters =
