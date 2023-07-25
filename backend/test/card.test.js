@@ -128,6 +128,24 @@ describe("card tests", () => {
       );
     });
   });
+  describe("increment card tests", () => {
+    test("should properly increment a card", async () => {
+      const response = await postCard({
+        name: "Dogg",
+        description: "a good Dog",
+        price: "10",
+        count: 1,
+        url: "https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcRPMKnq00NF_T7RusUNeLrSazRZM0S5O8_AOcw2iBTmYTxd3Q7uXf0sW41odpAKqSblKDMUMHGb8nZRo9g",
+      }).then(() => {
+        return request(app).patch("/cards/add/Dogg");
+      });
+
+      expect(response.body.name).toBe("Dogg");
+      expect(response.body.count).toBe(2);
+      expect(response.body.description).toBe("a good Dog");
+      expect(response.body.price).toBe(10);
+    });
+  });
 });
 
 async function deleteCard(name) {
