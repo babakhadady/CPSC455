@@ -95,6 +95,38 @@ describe("card tests", () => {
 
       expect(response.body.length).toBe(0);
     });
+
+    test("should delete correct cards", async () => {
+      const response = await postCard({
+        name: "Dogg",
+        description: "a good Dog",
+        price: "10",
+        count: 1,
+        url: "https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcRPMKnq00NF_T7RusUNeLrSazRZM0S5O8_AOcw2iBTmYTxd3Q7uXf0sW41odpAKqSblKDMUMHGb8nZRo9g",
+      })
+        .then(() => {
+          return postCard({
+            name: "Dodo",
+            description: "hmm",
+            price: "5",
+            count: 1,
+            url: "https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcRPMKnq00NF_T7RusUNeLrSazRZM0S5O8_AOcw2iBTmYTxd3Q7uXf0sW41odpAKqSblKDMUMHGb8nZRo9g",
+          });
+        })
+        .then(() => {
+          return deleteCard("Dogg");
+        })
+        .then(() => {
+          return getCards();
+        });
+
+      expect(response.body.length).toBe(1);
+      expect(response.body[0].name).toBe("Dodo");
+      expect(response.body[0].description).toBe("hmm");
+      expect(response.body[0].url).toBe(
+        "https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcRPMKnq00NF_T7RusUNeLrSazRZM0S5O8_AOcw2iBTmYTxd3Q7uXf0sW41odpAKqSblKDMUMHGb8nZRo9g"
+      );
+    });
   });
 });
 
@@ -103,6 +135,10 @@ async function deleteCard(name) {
 }
 async function postCard(card) {
   return request(app).post("/cards").send(card);
+}
+
+async function getCard(name) {
+  return request(app).get("/cards/" + name);
 }
 
 async function getCards() {
