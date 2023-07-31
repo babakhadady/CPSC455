@@ -9,7 +9,7 @@ function Home() {
 	return (
 		<>
 			<Navbar />
-			<h1> Assignment 4</h1>
+			<h1> Assignment 5</h1>
 			<Form setCount={setCount} />
 			<CardList count={count} setCount={setCount} />
 		</>

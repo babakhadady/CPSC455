@@ -14,7 +14,7 @@ function About() {
                         My name is Babak. I'm a fourth year CS student at UBC.
                     </div>
                     <div className="about-text">
-                        This is my application for Assignment 3 of CPSC 445. It allows a user to add simple cards containing a name, price, cost, description, and to also do fun stuff with the cards.
+                        This is my application for Assignment 5 of CPSC 445. It allows a user to add simple cards containing a name, price, cost, description, and to also do fun stuff with the cards.
                     </div>
                 </div>
             </div>

@@ -1,8 +1,9 @@
 
-const BACKEND_URI = "https://cpsc455-backend.onrender.com"
-
+ 
+const BACKEND_URI = "https://cpsc455-backend.onrender.com/"
+ 
 const addCard = async (card) => {
-	const response = await fetch("http://localhost:3001/cards", {
+	const response = await fetch(BACKEND_URI + "cards", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
@@ -15,24 +16,24 @@ const addCard = async (card) => {
 };
 
 const getCards = async () => {
-	const response = await fetch(BACKEND_URI, {
-		method: "GET",
+	const response = await fetch(BACKEND_URI + "cards", {
+ 		method: "GET",
 	});
 	const data = await response.json();
 	return data;
 };
 
 const getCard = async (name) => {
-	const response = await fetch(BACKEND_URI + name, {
-		method: "GET",
+	const response = await fetch(BACKEND_URI + "cards/" + name, {
+ 		method: "GET",
 	});
 	const data = await response.json();
 	return data;
 };
 
 const deleteCard = async (name) => {
-	const response = await fetch(BACKEND_URI + name, {
-		method: "DELETE",
+	const response = await fetch(BACKEND_URI + "cards/" +  name, {
+ 		method: "DELETE",
 	}).then(() => {
 		return getCards();
 	});
@@ -40,7 +41,7 @@ const deleteCard = async (name) => {
 };
 
 const addCardCount = async (name) => {
-	const response = await fetch("http://localhost:3001/cards/add/" + name, {
+	const response = await fetch(BACKEND_URI + "cards/add/" + name, {
 		method: "PATCH",
 	}).then(() => {
 		return getCards();
@@ -49,7 +50,7 @@ const addCardCount = async (name) => {
 };
 
 const decrementCardCount = async (name) => {
-	const response = await fetch("http://localhost:3001/cards/remove/" + name, {
+	const response = await fetch(BACKEND_URI + "cards/remove/" + name, {
 		method: "PATCH",
 	}).then(() => {
 		return getCards();
